@@ -14,16 +14,12 @@
         </style>
         <div class="col-sm-12">
             <div class="list-group">
-                <a href="{{route('list',['id'=>1])}}" class="list-group-item">挪威的森林<span class="digest_count">笔记：30</span></a>
-                <a href="digest_list.html" class="list-group-item">三生三世十里桃花<span class="digest_count">笔记：40</span></a>
-                <a href="digest_list.html" class="list-group-item">从你的全世界路过<span class="digest_count">笔记：68</span></a>
-                <a href="digest_list.html" class="list-group-item">解忧杂货铺<span class="digest_count">笔记：16</span></a>
-                <a href="digest_list.html" class="list-group-item">乖，摸摸头<span class="digest_count">笔记：5</span></a>
-                <a href="digest_list.html" class="list-group-item">小王子<span class="digest_count">笔记：9</span></a>
-                <a href="digest_list.html" class="list-group-item">古文观止<span class="digest_count">笔记：40</span></a>
-                <a href="digest_list.html" class="list-group-item">朦胧诗<span class="digest_count">笔记：21</span></a>
-                <a href="digest_list.html" class="list-group-item">把时间当做朋友<span class="digest_count">笔记：10</span></a>
-                <a href="digest_list.html" class="list-group-item">白夜行<span class="digest_count">笔记：7</span></a>
+                @foreach($lists as $list)
+                  <a href="{{route('list',['id'=>$list['id']])}}" class="list-group-item">
+                      {{ $list->name }}
+                      <span class="digest_count">笔记：{{ $list->count }}</span>
+                  </a>
+                @endforeach
             </div>
         </div>
         <div class="col-sm-12 text-right">

@@ -1,7 +1,7 @@
 <!-- resources/views/dashboard.blade.php -->
 @extends('layouts.master')
 
-@section('title', '数目添加')
+@section('title', '书目添加')
 
 @section('content')
     <div class="container">
