@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\BookRequest;
 use Illuminate\Http\Request;
 use App\Models\Book;
 
@@ -39,5 +40,19 @@ class BookController extends Controller
     public function bookAdd()
     {
         return view('books.add');
+    }
+
+    /**
+     * bookAdd Store a newly created Book
+     * @param BookRequest $createRequest
+     * @author zhangxiaobin <zxbin.1990@gmail.com>
+     * @date 2019-12-23 15:06
+     */
+    public function store(BookRequest $createRequest)
+    {
+        $post = Book::create($createRequest->postFillData());
+        return redirect()
+            ->route('booklist')
+            ->with('success', '新书创建成功.');
     }
 }

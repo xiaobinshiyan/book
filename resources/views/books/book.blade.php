@@ -12,6 +12,8 @@
                 width:70px;
             }
         </style>
+        @include('partials.errors')
+        @include('partials.success')
         <div class="col-sm-12">
             <div class="list-group">
                 @foreach($lists as $list)
@@ -23,12 +25,18 @@
             </div>
         </div>
         <div class="col-sm-12 text-right">
-            <a href="{{route('addbook')}}" class="btn btn-success">添加</a>
+            <a href="{{route('book.add')}}" class="btn btn-success">添加</a>
         </div>
     </div>
 @endsection
 
 @section('footerScripts')
     @parent
-    <!-- <script src="{{ asset('js/dashboard.js') }}"></script>  -->
+    <script>
+        $(function () {
+            if($('.alert-success')[0]) {
+                $('.alert-success').delay(1000).fadeIn();
+            }
+        })
+    </script>
 @endsection
