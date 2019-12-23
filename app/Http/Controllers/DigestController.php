@@ -7,6 +7,7 @@ use App\Http\Requests\DigestRequest;
 use Illuminate\Http\Request;
 use App\Models\Digest;
 use App\Models\Book;
+
 /**
  * Class DigestController
  * @package App\Http\Controllers
@@ -21,11 +22,11 @@ class DigestController extends Controller
      * @author zhangxiaobin <zxbin.1990@gmail.com>
      * @date 2019-12-23 9:10
      */
-    public function digestList(Request $request,$book_id)
+    public function digestList(Request $request, $book_id)
     {
-        $book_info = Book::where(['id'=>$book_id])->firstOrFail();
-        $digest_list = Digest::where(['book_id'=>$book_id])->where('status','=',1)->orderBy('created_at','asc')->get();
-        return view('digest.list',['lists'=>$digest_list,'book_info'=>$book_info]);
+        $book_info = Book::where(['id' => $book_id])->firstOrFail();
+        $digest_list = Digest::where(['book_id' => $book_id])->where('status', '=', 1)->orderBy('created_at', 'asc')->get();
+        return view('digest.list', ['lists' => $digest_list, 'book_info' => $book_info]);
     }
 
     /**
@@ -36,8 +37,8 @@ class DigestController extends Controller
      */
     public function digestAdd()
     {
-        $book_list = Book::where(['status'=>1])->get();
-        return view('digest.add',['lists'=>$book_list]);
+        $book_list = Book::where(['status' => 1])->get();
+        return view('digest.add', ['lists' => $book_list]);
     }
 
     /**
@@ -46,35 +47,37 @@ class DigestController extends Controller
      * @author zhangxiaobin <zxbin.1990@gmail.com>
      * @date 2019-12-23 16:22
      */
-    public function store(DigestRequest $digestrequest) {
+    public function store(DigestRequest $digestrequest)
+    {
 //        echo '<pre>';print_r($digestrequest->postFillData());exit();
         Digest::create($digestrequest->postFillData());
         return redirect()
-            ->route('list',['id'=>$digestrequest->post('book_id')])
+            ->route('list', ['id' => $digestrequest->post('book_id')])
             ->with('success', '笔记创建成功.');
     }
+
     /**
      * digestEdit 读书笔记编辑
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * @author zhangxiaobin <zxbin.1990@gmail.com>
      * @date 2019-12-23 9:11
      */
-    public function digestEdit(Request $request,$id)
+    public function digestEdit(Request $request, $id)
     {
-        $info = Digest::where(['id'=>$id])->firstOrFail();
+        $info = Digest::where(['id' => $id])->firstOrFail();
         $book_info = Book::find($info->book_id);
-        return view('digest.edit',['info'=>$info,'book_info'=>$book_info]);
+        return view('digest.edit', ['info' => $info, 'book_info' => $book_info]);
     }
 
     public function edit(Request $request)
     {
         $this->validate($request, [
-            'content'   => 'required',
-            'book_id'   => 'required|numeric'
+            'content' => 'required',
+            'book_id' => 'required|numeric'
         ], [
-            'content.required'=> '书名不能为空',
-            'book_id.required'   => '书目不能为空',
-            'book_id.numeric'    => '书目必须是数字',
+            'content.required' => '书名不能为空',
+            'book_id.required' => '书目不能为空',
+            'book_id.numeric' => '书目必须是数字',
         ]);
         $digest_id = $request->input('id');
         $book_id = $request->input('book_id');
@@ -85,9 +88,10 @@ class DigestController extends Controller
         $post->book_id = $book_id;
         $res = $post->save();
         return redirect()
-            ->route('list',['id'=>$book_id])
+            ->route('list', ['id' => $book_id])
             ->with('success', '笔记修改成功.');
     }
+
     /**
      * digestDelete soft delete
      * @param Request $request
@@ -100,6 +104,7 @@ class DigestController extends Controller
         $post = Digest::find($id);
         $post->status = 2;
         $post->save();
-        echo json_encode(array('status'=>1));exit();
+        echo json_encode(array('status' => 1));
+        exit();
     }
 }

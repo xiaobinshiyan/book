@@ -22,13 +22,13 @@ class BookController extends Controller
      */
     public function bookList()
     {
-        $book_list = Book::where('status','=','1')->orderBy('sort','asc')->get();
-        if (! empty($book_list)) {
+        $book_list = Book::where('status', '=', '1')->orderBy('sort', 'asc')->get();
+        if (!empty($book_list)) {
             foreach ($book_list as $k => $v) {
                 $book_list[$k]['count'] = count(Book::findOrFail($v['id'])->digest);
             }
         }
-        return view('books.book',['lists'=>$book_list]);
+        return view('books.book', ['lists' => $book_list]);
     }
 
     /**
