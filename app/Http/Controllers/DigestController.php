@@ -69,6 +69,14 @@ class DigestController extends Controller
         return view('digest.edit', ['info' => $info, 'book_info' => $book_info]);
     }
 
+    /**
+     * edit 编辑
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Validation\ValidationException
+     * @author zhangxiaobin <zxbin.1990@gmail.com>
+     * @date 2019-12-23 17:25
+     */
     public function edit(Request $request)
     {
         $this->validate($request, [
