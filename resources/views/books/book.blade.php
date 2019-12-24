@@ -5,7 +5,7 @@
 
 @section('content')
     <div class="container" style="margin-top: 60px;">
-        <div class="text-center"><h2>读书笔记</h2></div>
+        <div class="text-center"><h2 id="triggerc">读书笔记</h2></div>
         <style>
             .digest_count{
                 float:right;
@@ -35,7 +35,9 @@
     <script>
         $(function () {
             if($('.alert-success')[0]) {
-                $('.alert-success').delay(1000).fadeIn();
+                setTimeout(function () {
+                    $('.alert-success').delay(1000).css('display','none');
+                },1000)
             }
         })
     </script>

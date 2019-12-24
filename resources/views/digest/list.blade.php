@@ -34,7 +34,9 @@
     <script>
         $(function () {
             if($('.alert-success')[0]) {
-                $('.alert-success').eq(0).delay(1000).fadeIn();
+                setTimeout(function () {
+                    $('.alert-success').delay(1000).css('display','none');
+                },1000)
             }
             $('.soft-delete').click(function () {
                 var digest_id = $(this).data('digest_id')
