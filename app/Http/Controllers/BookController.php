@@ -28,6 +28,12 @@ class BookController extends Controller
                 $book_list[$k]['count'] = count(Book::findOrFail($v['id'])->digest);
             }
         }
+
+//        $_test = Book::with(['digest'=> function ($q) {
+//            $q->where('status', '=', '1');
+//        }])->get()->toArray();
+//        $_test =  Book::has('digest')->get()->toArray();
+//        echo '<pre>';print_r($_test);exit();
         return view('books.book', ['lists' => $book_list]);
     }
 
