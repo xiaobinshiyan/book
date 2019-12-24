@@ -50,7 +50,7 @@ class BookController extends Controller
      */
     public function store(BookRequest $createRequest)
     {
-        $post = Book::create($createRequest->postFillData());
+        Book::create($createRequest->postFillData());
         return redirect()
             ->route('booklist')
             ->with('success', '新书创建成功.');
