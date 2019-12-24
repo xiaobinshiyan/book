@@ -57,10 +57,11 @@ class DigestController extends Controller
     }
 
     /**
-     * digestEdit 读书笔记编辑
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * digestEdit DESC
+     * @param Request $request
+     * @param int $id 笔记ID
      * @author zhangxiaobin <zxbin.1990@gmail.com>
-     * @date 2019-12-23 9:11
+     * @date 2019-12-24 14:11
      */
     public function digestEdit(Request $request, $id)
     {
