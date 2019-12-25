@@ -15,25 +15,15 @@ use App\Models\Book;
 class BookController extends Controller
 {
     /**
-     * bookList DESC
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * bookList 展示数目列表
      * @author zhangxiaobin <zxbin.1990@gmail.com>
      * @date 2019-12-20 16:20
      */
     public function bookList()
     {
-        $book_list = Book::where('status', '=', '1')->orderBy('sort', 'asc')->get();
-        if (!empty($book_list)) {
-            foreach ($book_list as $k => $v) {
-                $book_list[$k]['count'] = count(Book::findOrFail($v['id'])->digest);
-            }
-        }
-
-//        $_test = Book::with(['digest'=> function ($q) {
-//            $q->where('status', '=', '1');
-//        }])->get()->toArray();
-//        $_test =  Book::has('digest')->get()->toArray();
-//        echo '<pre>';print_r($_test);exit();
+        $book_list = Book::with(['digest'=> function ($q) {
+            $q->where('status', '=', '1');
+        }])->get();
         return view('books.book', ['lists' => $book_list]);
     }
 

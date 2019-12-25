@@ -19,7 +19,7 @@
                 @foreach($lists as $list)
                   <a href="{{route('list',['id'=>$list['id']])}}" class="list-group-item">
                       {{ $list->name }}
-                      <span class="digest_count">笔记：{{ $list->count }}</span>
+                      <span class="digest_count">笔记：<?php echo count($list->digest)?></span>
                   </a>
                 @endforeach
             </div>

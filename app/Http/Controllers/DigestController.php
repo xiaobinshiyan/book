@@ -24,6 +24,7 @@ class DigestController extends Controller
      */
     public function digestList(Request $request, $book_id)
     {
+        Book::where('id', '=', $book_id)->increment('clicks');
         $book_info = Book::where(['id' => $book_id])->firstOrFail();
         $digest_list = Digest::where(['book_id' => $book_id])->where('status', '=', 1)->orderBy('created_at', 'asc')->get();
         return view('digest.list', ['lists' => $digest_list, 'book_info' => $book_info]);
