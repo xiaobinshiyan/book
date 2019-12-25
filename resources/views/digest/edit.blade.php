@@ -37,5 +37,12 @@
 
 @section('footerScripts')
     @parent
+    <script>
+        $(function () {
+            $('input[type=reset]').click(function () {
+                $("textarea[name=content]").html('')
+            })
+        })
+    </script>
     <!-- <script src="{{ asset('js/dashboard.js') }}"></script>  -->
 @endsection
