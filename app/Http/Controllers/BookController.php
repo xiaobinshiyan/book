@@ -38,10 +38,10 @@ class BookController extends Controller
     }
 
     /**
-     * bookAdd DESC
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @author zhangxiaobin <zxbin.1990@gmail.com>
-     * @date 2019-12-20 17:05
+     * bookAdd 新书目的添加
+     * @return
+     * @author zhangxiaobin
+     * @date 2019-12-25
      */
     public function bookAdd()
     {
